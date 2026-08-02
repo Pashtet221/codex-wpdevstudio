@@ -25,3 +25,14 @@ scripts/wp update-wp-plugin 123 examples/update-wp-plugin.json
 ```
 
 Важно: WordPress-плагин Codex Bridge на самом сайте должен разрешать post type `wp-plugins` в своём списке допустимых типов записей. Этот архив содержит клиентские команды, а не PHP-код серверного плагина.
+
+## Media / screenshots
+
+```bash
+scripts/wp media-upload FILE.webp [--post-id=ID] [--alt=TEXT] [--title=TEXT] [--caption=TEXT] [--description=TEXT] [--set-featured]
+scripts/wp media-sideload payload.json
+scripts/wp thumbnail POST_ID ATTACHMENT_ID
+scripts/wp capture URL NAME [--selector=CSS] [--mobile] [--mode=page|viewport] [--post-id=ID] [--set-featured]
+```
+
+`capture` performs browser capture + WebP optimization + WordPress Media upload and returns a ready `gutenberg_block`.

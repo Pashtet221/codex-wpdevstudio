@@ -1,0 +1,15 @@
+{
+  "name": "codex-wordpress-cloud",
+  "version": "4.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup-browser": "playwright install chromium",
+    "check:capture": "node --check scripts/capture-media.mjs",
+    "setup": "bash scripts/bootstrap-capture.sh"
+  },
+  "dependencies": {
+    "playwright": "^1.54.0",
+    "sharp": "^0.34.3"
+  }
+}
