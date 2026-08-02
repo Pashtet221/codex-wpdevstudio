@@ -18,6 +18,9 @@ case "${1:-help}" in
   posts)
     curl_api "$API/posts?post_type=post&per_page=100"
     ;;
+  cases)
+    curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/case?context=edit&per_page=100"
+    ;;
   wp-plugins)
     bridge_response="$(mktemp)"
     if curl_api "$API/posts?post_type=wp-plugins&per_page=100" >"$bridge_response"; then
@@ -38,11 +41,17 @@ case "${1:-help}" in
   get-wp-plugin)
     curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/plugin/$2"
     ;;
+  get-case)
+    curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/case/$2?context=edit"
+    ;;
   create)
     curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/posts"
     ;;
   create-wp-plugin)
     curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/posts"
+    ;;
+  create-case)
+    curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "${WORDPRESS_URL%/}/wp-json/wp/v2/case"
     ;;
   acf)
     curl_api "$API/posts/$2/acf"
@@ -61,6 +70,9 @@ case "${1:-help}" in
     echo "codex-bridge wp-plugins update is unavailable; falling back to WordPress REST post type plugin" >&2
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "${WORDPRESS_URL%/}/wp-json/wp/v2/plugin/$2"
     ;;
+  update-case)
+    curl_api -X POST -H "Content-Type: application/json" --data-binary @"$3" "${WORDPRESS_URL%/}/wp-json/wp/v2/case/$2"
+    ;;
   update-acf)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/acf"
     ;;
@@ -74,6 +86,6 @@ case "${1:-help}" in
     curl_api "$API/audit"
     ;;
   *)
-    echo "health pages posts wp-plugins find get get-wp-plugin create create-wp-plugin acf update update-wp-plugin update-acf scan-links replace-links audit"
+    echo "health pages posts cases wp-plugins find get get-case get-wp-plugin create create-case create-wp-plugin acf update update-case update-wp-plugin update-acf scan-links replace-links audit"
     ;;
 esac
