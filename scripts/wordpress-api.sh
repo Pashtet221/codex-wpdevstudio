@@ -92,10 +92,12 @@ case "${1:-help}" in
   thumbnail)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary "{\"attachment_id\":${3:-0}}" "$API/posts/$2/thumbnail"
     ;;
+  screenshot-capture)
+    curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/screenshot/capture"
+    ;;
   capture)
     shift
     script_dir="$(cd "$(dirname "$0")" && pwd)"
-    bash "$script_dir/bootstrap-capture.sh"
     exec node "$script_dir/capture-media.mjs" "$@"
     ;;
   scan-links)
@@ -108,6 +110,6 @@ case "${1:-help}" in
     curl_api "$API/audit"
     ;;
   *)
-    echo "health pages posts wp-plugins find get get-wp-plugin create create-wp-plugin acf update update-wp-plugin update-acf media-upload media-sideload thumbnail capture scan-links replace-links audit"
+    echo "health pages posts wp-plugins find get get-wp-plugin create create-wp-plugin acf update update-wp-plugin update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
     ;;
 esac

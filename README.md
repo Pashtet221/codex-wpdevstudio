@@ -27,7 +27,7 @@ scripts/wp update-wp-plugin POST_ID examples/update-wp-plugin.json
 
 ## Скриншоты сайта → WebP → WordPress Media → Gutenberg
 
-В v4.1 команда `capture` стала самонастраиваемой: при первом запуске Cloud автоматически устанавливает Playwright, Sharp и Chromium. Вручную выполнять `npm install` или `npx playwright install chromium` не нужно.
+В v4.2 команда `capture` стала самонастраиваемой: при первом запуске Cloud автоматически устанавливает Playwright, Sharp и Chromium. Вручную выполнять `npm install` или `npx playwright install chromium` не нужно.
 
 В v4 добавлена команда `capture`. Она открывает внешний сайт через Playwright, делает скриншот всей страницы или отдельного блока, оптимизирует изображение в WebP через Sharp, загружает его в медиатеку WordPress через Codex Bridge и возвращает JSON с `media.id`, `media.url` и готовым `gutenberg_block`.
 
