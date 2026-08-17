@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Codex Bridge — Rank Math Meta
  * Description: Adds an authenticated Rank Math meta endpoint to Codex Bridge.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Requires PHP: 7.4
  */
 
@@ -14,7 +14,10 @@ final class Codex_Bridge_Rank_Math_Meta {
 		'rank_math_title',
 		'rank_math_description',
 		'rank_math_focus_keyword',
+		'rank_math_canonical_url',
+		'rank_math_robots',
 	);
+	private const IMMUTABLE_KEYS = array( 'id', 'ID', 'slug', 'url', 'post_type', 'status' );
 
 	public static function register(): void {
 		register_rest_route(
@@ -82,6 +85,12 @@ final class Codex_Bridge_Rank_Math_Meta {
 		$post_id = (int) $request['id'];
 		$values  = array();
 
+		foreach ( self::IMMUTABLE_KEYS as $key ) {
+			if ( $request->has_param( $key ) && ! ( 'id' === $key && $post_id === (int) $request->get_param( $key ) ) ) {
+				return new WP_Error( 'codex_bridge_immutable_seo_field', sprintf( '%s cannot be changed through the SEO endpoint.', $key ), array( 'status' => 400 ) );
+			}
+		}
+
 		foreach ( self::META_KEYS as $key ) {
 			if ( ! $request->has_param( $key ) ) {
 				continue;
@@ -92,7 +101,7 @@ final class Codex_Bridge_Rank_Math_Meta {
 				return new WP_Error( 'codex_bridge_invalid_seo_meta', sprintf( '%s must be a string or null.', $key ), array( 'status' => 400 ) );
 			}
 
-			$values[ $key ] = null === $value ? null : sanitize_text_field( $value );
+			$values[ $key ] = null === $value ? null : self::sanitize_meta( $key, $value );
 		}
 
 		if ( array() === $values ) {
@@ -111,12 +120,79 @@ final class Codex_Bridge_Rank_Math_Meta {
 	}
 
 	private static function response_data( int $post_id ): array {
-		$data = array( 'id' => $post_id );
+		$post = get_post( $post_id );
+		$data = array(
+			'id'        => $post_id,
+			'post_type' => $post ? $post->post_type : '',
+			'url'       => $post ? get_permalink( $post ) : '',
+			'slug'      => $post ? $post->post_name : '',
+			'title'     => $post ? get_the_title( $post ) : '',
+			'content'   => $post ? $post->post_content : '',
+			'excerpt'   => $post ? $post->post_excerpt : '',
+		);
 		foreach ( self::META_KEYS as $key ) {
 			$data[ $key ] = (string) get_post_meta( $post_id, $key, true );
 		}
+		$data['seo_acf'] = self::seo_acf( $post_id );
+		$data['rendered'] = self::rendered_seo( $post );
 
 		return $data;
+	}
+
+	private static function sanitize_meta( string $key, string $value ): string {
+		if ( 'rank_math_canonical_url' === $key ) {
+			return esc_url_raw( $value );
+		}
+		if ( 'rank_math_robots' === $key ) {
+			$tokens = array_filter( array_map( 'sanitize_key', preg_split( '/[\s,]+/', $value ) ) );
+			$tokens = array_intersect( $tokens, array( 'index', 'noindex', 'follow', 'nofollow', 'noarchive', 'nosnippet', 'noimageindex' ) );
+			return implode( ',', array_values( array_unique( $tokens ) ) );
+		}
+		return sanitize_text_field( $value );
+	}
+
+	/** Return only explicitly allowlisted ACF fields; relationship values are reduced to IDs. */
+	private static function seo_acf( int $post_id ): array {
+		if ( ! function_exists( 'get_field_object' ) ) {
+			return array();
+		}
+		$names = apply_filters( 'codex_bridge_seo_acf_fields', array(), $post_id );
+		$data  = array();
+		foreach ( array_filter( array_map( 'sanitize_key', (array) $names ) ) as $name ) {
+			$field = get_field_object( $name, $post_id, false, false );
+			if ( ! $field ) {
+				continue;
+			}
+			$value = $field['value'] ?? null;
+			if ( is_array( $value ) ) {
+				$value = array_map( static fn( $item ) => is_object( $item ) && isset( $item->ID ) ? (int) $item->ID : $item, $value );
+			}
+			$data[ $name ] = array( 'type' => $field['type'], 'value' => $value );
+		}
+		return $data;
+	}
+
+	/** Read final public markup so filters/templates, not merely stored meta, are verified. */
+	private static function rendered_seo( $post ): array {
+		$result = array( 'h1' => array(), 'canonical' => '', 'robots' => '', 'title' => '', 'description' => '', 'http_status' => 0 );
+		if ( ! $post || 'publish' !== $post->post_status ) {
+			return $result;
+		}
+		$response = wp_remote_get( get_permalink( $post ), array( 'timeout' => 15, 'redirection' => 3 ) );
+		if ( is_wp_error( $response ) ) {
+			$result['error'] = $response->get_error_message();
+			return $result;
+		}
+		$html = wp_remote_retrieve_body( $response );
+		$result['http_status'] = wp_remote_retrieve_response_code( $response );
+		preg_match_all( '/<h1\b[^>]*>(.*?)<\/h1>/is', $html, $h1 );
+		$result['h1'] = array_map( static fn( $value ) => trim( wp_strip_all_tags( $value ) ), $h1[1] ?? array() );
+		foreach ( array( 'title' => '/<title[^>]*>(.*?)<\/title>/is', 'canonical' => '/<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)/is', 'robots' => '/<meta[^>]+name=["\']robots["\'][^>]+content=["\']([^"\']+)/is', 'description' => '/<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']+)/is' ) as $key => $pattern ) {
+			if ( preg_match( $pattern, $html, $match ) ) {
+				$result[ $key ] = html_entity_decode( trim( wp_strip_all_tags( $match[1] ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+			}
+		}
+		return $result;
 	}
 
 	public static function schema(): array {
