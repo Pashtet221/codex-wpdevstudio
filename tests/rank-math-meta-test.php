@@ -25,10 +25,14 @@ class WP_REST_Request implements ArrayAccess {
 $GLOBALS['test_meta'] = array();
 function add_action() {}
 function register_rest_route() {}
-function get_post( int $id ): object { return (object) array( 'ID' => $id, 'post_type' => 'page' ); }
+function get_post( int $id ): object { return (object) array( 'ID' => $id, 'post_type' => 'page', 'post_name' => 'test', 'post_title' => 'Test', 'post_content' => 'Content', 'post_excerpt' => 'Excerpt', 'post_status' => 'draft' ); }
+function get_permalink(): string { return 'https://example.com/test/'; }
+function get_the_title( object $post ): string { return $post->post_title; }
 function current_user_can(): bool { return true; }
 function sanitize_key( string $value ): string { return preg_replace( '/[^a-z0-9_\-]/', '', strtolower( $value ) ); }
 function sanitize_text_field( string $value ): string { return trim( strip_tags( $value ) ); }
+function esc_url_raw( string $value ): string { return filter_var( $value, FILTER_SANITIZE_URL ); }
+function apply_filters( string $name, mixed $value ): mixed { return $value; }
 function rest_do_request(): WP_REST_Response { return new WP_REST_Response( array( 'allowed_types' => array( 'page', 'post', 'wpds-case' ) ) ); }
 function rest_ensure_response( array $data ): WP_REST_Response { return new WP_REST_Response( $data ); }
 function update_post_meta( int $id, string $key, string $value ): void { $GLOBALS['test_meta'][ $id ][ $key ] = $value; }
@@ -45,6 +49,8 @@ $request = new WP_REST_Request(
 		'rank_math_title'             => ' Bridge test title ',
 		'rank_math_description'       => 'Bridge test description',
 		'rank_math_focus_keyword'     => 'bridge test keyword',
+		'rank_math_canonical_url'      => 'https://example.com/test/',
+		'rank_math_robots'             => 'index, follow, invalid',
 	)
 );
 
@@ -56,5 +62,10 @@ assert( $written === $read );
 assert( 'Bridge test title' === $read['rank_math_title'] );
 assert( 'Bridge test description' === $read['rank_math_description'] );
 assert( 'bridge test keyword' === $read['rank_math_focus_keyword'] );
+assert( 'https://example.com/test/' === $read['rank_math_canonical_url'] );
+assert( 'index,follow' === $read['rank_math_robots'] );
+assert( 'page' === $read['post_type'] );
+assert( 'test' === $read['slug'] );
+assert( array() === $read['rendered']['h1'] );
 
 echo json_encode( $read, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . PHP_EOL;
