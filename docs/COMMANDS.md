@@ -26,6 +26,30 @@ scripts/wp update-wp-plugin 123 examples/update-wp-plugin.json
 
 Важно: WordPress-плагин Codex Bridge на самом сайте должен разрешать post type `wp-plugins` в своём списке допустимых типов записей. Этот архив содержит клиентские команды, а не PHP-код серверного плагина.
 
+## Rank Math SEO meta
+
+Расширение `wordpress-plugin/codex-bridge-rank-math` добавляет отдельный endpoint для
+трёх разрешённых полей Rank Math. Оно использует тот же whitelist типов записей,
+который возвращает Codex Bridge, и стандартные WordPress capabilities объекта.
+
+```bash
+scripts/wp seo POST_ID
+scripts/wp update-seo POST_ID payload.json
+```
+
+Пример payload (передаются только изменяемые поля):
+
+```json
+{
+  "rank_math_title": "Проверочный SEO title",
+  "rank_math_description": "Проверочное SEO description",
+  "rank_math_focus_keyword": "проверочный запрос"
+}
+```
+
+Пустая строка или `null` удаляет конкретное meta-поле. Произвольные meta keys
+endpoint не принимает.
+
 ## Media / screenshots
 
 ```bash
