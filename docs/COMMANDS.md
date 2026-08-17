@@ -24,6 +24,26 @@ scripts/wp create-wp-plugin examples/create-wp-plugin.json
 scripts/wp update-wp-plugin 123 examples/update-wp-plugin.json
 ```
 
+## Услуги (`service`)
+
+Дополнение `wordpress-plugin/codex-bridge-service-access` добавляет тип записи
+`service` в whitelist Codex Bridge. Права на каждую операцию по-прежнему
+проверяются WordPress через capabilities этого типа записи.
+
+```bash
+# Просмотреть услуги
+scripts/wp services
+
+# Создать услугу (payload должен содержать "post_type": "service")
+scripts/wp create-service payload.json
+
+# Изменить услугу
+scripts/wp update-service POST_ID payload.json
+
+# Удалить услугу
+scripts/wp delete-service POST_ID
+```
+
 Важно: WordPress-плагин Codex Bridge на самом сайте должен разрешать post type `wp-plugins` в своём списке допустимых типов записей. Этот архив содержит клиентские команды, а не PHP-код серверного плагина.
 
 ## Rank Math SEO meta

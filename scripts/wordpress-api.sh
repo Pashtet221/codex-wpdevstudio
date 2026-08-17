@@ -18,6 +18,9 @@ case "${1:-help}" in
   posts)
     curl_api "$API/posts?post_type=post&per_page=100"
     ;;
+  services)
+    curl_api "$API/posts?post_type=service&per_page=100"
+    ;;
   wp-plugins)
     bridge_response="$(mktemp)"
     if curl_api "$API/posts?post_type=wp-plugins&per_page=100" >"$bridge_response"; then
@@ -44,6 +47,9 @@ case "${1:-help}" in
   create)
     curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/posts"
     ;;
+  create-service)
+    curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/posts"
+    ;;
   create-wp-plugin)
     curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/posts"
     ;;
@@ -52,6 +58,12 @@ case "${1:-help}" in
     ;;
   update)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2"
+    ;;
+  update-service)
+    curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2"
+    ;;
+  delete-service)
+    curl_api -X DELETE "$API/posts/$2"
     ;;
   update-seo)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/seo"
@@ -116,6 +128,6 @@ case "${1:-help}" in
     curl_api "$API/audit"
     ;;
   *)
-    echo "health pages posts wp-plugins find get seo get-wp-plugin create create-wp-plugin acf update update-seo update-wp-plugin update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
+    echo "health pages posts services wp-plugins find get seo get-wp-plugin create create-service create-wp-plugin acf update update-service delete-service update-seo update-wp-plugin update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
     ;;
 esac
