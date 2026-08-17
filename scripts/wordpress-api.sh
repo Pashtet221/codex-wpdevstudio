@@ -29,6 +29,17 @@ case "${1:-help}" in
     echo "codex-bridge wp-plugins is unavailable; falling back to WordPress REST post type plugin" >&2
     curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/plugin?per_page=100"
     ;;
+  services)
+    bridge_response="$(mktemp)"
+    if curl_api "$API/posts?post_type=service&status=publish&per_page=100" >"$bridge_response"; then
+      cat "$bridge_response"
+      rm -f "$bridge_response"
+      exit 0
+    fi
+    rm -f "$bridge_response"
+    echo "codex-bridge service is unavailable; falling back to read-only WordPress REST listing" >&2
+    curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/service?status=publish&per_page=100&context=edit"
+    ;;
   find)
     curl_api --get --data-urlencode "search=${2:-}" "$API/posts"
     ;;
@@ -37,6 +48,17 @@ case "${1:-help}" in
     ;;
   get-wp-plugin)
     curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/plugin/$2"
+    ;;
+  get-service)
+    bridge_response="$(mktemp)"
+    if curl_api "$API/posts/$2?post_type=service" >"$bridge_response"; then
+      cat "$bridge_response"
+      rm -f "$bridge_response"
+      exit 0
+    fi
+    rm -f "$bridge_response"
+    echo "codex-bridge service is unavailable; falling back to read-only WordPress REST object" >&2
+    curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/service/$2?context=edit"
     ;;
   create)
     curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/posts"
@@ -60,6 +82,11 @@ case "${1:-help}" in
     rm -f "$bridge_response"
     echo "codex-bridge wp-plugins update is unavailable; falling back to WordPress REST post type plugin" >&2
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "${WORDPRESS_URL%/}/wp-json/wp/v2/plugin/$2"
+    ;;
+  update-service)
+    # Service writes deliberately have no REST fallback. The Bridge must validate
+    # the post type and its allow-listed content/Rank Math fields server-side.
+    curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2?post_type=service"
     ;;
   update-acf)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/acf"
@@ -110,6 +137,6 @@ case "${1:-help}" in
     curl_api "$API/audit"
     ;;
   *)
-    echo "health pages posts wp-plugins find get get-wp-plugin create create-wp-plugin acf update update-wp-plugin update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
+    echo "health pages posts wp-plugins services find get get-wp-plugin get-service create create-wp-plugin acf update update-wp-plugin update-service update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
     ;;
 esac

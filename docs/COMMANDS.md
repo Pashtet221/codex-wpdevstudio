@@ -24,6 +24,18 @@ scripts/wp create-wp-plugin examples/create-wp-plugin.json
 scripts/wp update-wp-plugin 123 examples/update-wp-plugin.json
 ```
 
+Услуги используют post type `service`, хотя в permalink применяется `/services/`:
+
+```bash
+scripts/wp services
+scripts/wp get-service POST_ID
+scripts/wp update-service POST_ID payload.json
+```
+
+`services` и `get-service` могут безопасно перейти на read-only WordPress REST,
+если серверный Bridge ещё не содержит `service` в whitelist. `update-service`
+никогда не обходит Bridge и не имеет прямого REST fallback.
+
 Важно: WordPress-плагин Codex Bridge на самом сайте должен разрешать post type `wp-plugins` в своём списке допустимых типов записей. Этот архив содержит клиентские команды, а не PHP-код серверного плагина.
 
 ## Media / screenshots

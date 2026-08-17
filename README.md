@@ -25,6 +25,20 @@ scripts/wp update-wp-plugin POST_ID examples/update-wp-plugin.json
 
 Серверный WordPress-плагин Codex Bridge также должен иметь `wp-plugins` в whitelist разрешённых post type.
 
+Услуги используют фактический WordPress post type `service`, хотя их публичные
+URL имеют префикс `/services/`:
+
+```bash
+scripts/wp services
+scripts/wp get-service POST_ID
+scripts/wp update-service POST_ID payload.json
+```
+
+Чтение услуг временно откатывается к WordPress REST API, если установленная на
+сайте версия Codex Bridge ещё не разрешает `service`. Для обновления fallback
+нет: содержимое и Rank Math meta услуги всегда отправляются через Bridge, чтобы
+сервер применил whitelist полей и проверил тип записи.
+
 ## Скриншоты сайта → WebP → WordPress Media → Gutenberg
 
 В v4.2 команда `capture` стала самонастраиваемой: при первом запуске Cloud автоматически устанавливает Playwright, Sharp и Chromium. Вручную выполнять `npm install` или `npx playwright install chromium` не нужно.
