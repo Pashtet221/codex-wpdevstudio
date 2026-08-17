@@ -35,6 +35,9 @@ case "${1:-help}" in
   get)
     curl_api "$API/posts/$2"
     ;;
+  seo)
+    curl_api "$API/posts/$2/seo"
+    ;;
   get-wp-plugin)
     curl_api "${WORDPRESS_URL%/}/wp-json/wp/v2/plugin/$2"
     ;;
@@ -49,6 +52,9 @@ case "${1:-help}" in
     ;;
   update)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2"
+    ;;
+  update-seo)
+    curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/seo"
     ;;
   update-wp-plugin)
     bridge_response="$(mktemp)"
@@ -110,6 +116,6 @@ case "${1:-help}" in
     curl_api "$API/audit"
     ;;
   *)
-    echo "health pages posts wp-plugins find get get-wp-plugin create create-wp-plugin acf update update-wp-plugin update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
+    echo "health pages posts wp-plugins find get seo get-wp-plugin create create-wp-plugin acf update update-seo update-wp-plugin update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
     ;;
 esac
