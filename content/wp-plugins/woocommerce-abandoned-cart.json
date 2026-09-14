@@ -1,5 +1,5 @@
 {
-  "post_type": "plugin",
+  "post_type": "wp-plugins",
   "status": "draft",
   "title": "WooCommerce Abandoned Cart",
   "slug": "woocommerce-abandoned-cart",
