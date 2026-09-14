@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Regional Pricing",
+  "slug": "woocommerce-regional-pricing",
+  "excerpt": "Региональные цены и валюты для WooCommerce. Определяет регион покупателя и применяет валюту и коэффициент для расчёта региональной цены.",
+  "content": "<!-- wp:paragraph -->\n<p>Определяет регион покупателя и применяет валюту и коэффициент для расчёта региональной цены.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Связывайте страну или группу стран с валютой, коэффициентом и правилами округления. Базовая цена остаётся в каталоге.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Региональная цена одинаково рассчитывается в карточке, корзине и заказе. Ручной выбор региона и фиксация курса в заказе делают результат предсказуемым.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}
