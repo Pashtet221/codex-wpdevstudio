@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Quick Stock & Price",
+  "slug": "woocommerce-quick-stock-price",
+  "excerpt": "Массовое управление ценами и остатками. Добавляет быстрый экран массового редактирования цен, скидок и складских остатков без открытия карточек товаров.",
+  "content": "<!-- wp:paragraph -->\n<p>Добавляет быстрый экран массового редактирования цен, скидок и складских остатков без открытия карточек товаров.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Ищите товары и вариации по названию, SKU и категории и меняйте значения прямо в таблице.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Повышайте или снижайте цены на сумму либо процент. Предпросмотр, проверка значений и журнал операций защищают каталог от случайной перезаписи.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}

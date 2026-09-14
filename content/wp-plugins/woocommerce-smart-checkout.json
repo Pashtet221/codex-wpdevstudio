@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Smart Checkout",
+  "slug": "woocommerce-smart-checkout",
+  "excerpt": "Упрощённое оформление заказа WooCommerce. Упрощает checkout: переключает сценарии для физического и юридического лица, управляет полями и помогает вводить адрес.",
+  "content": "<!-- wp:paragraph -->\n<p>Упрощает checkout: переключает сценарии для физического и юридического лица, управляет полями и помогает вводить адрес.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Поля отображаются по типу покупателя, составу корзины, стране, доставке и оплате. Неактуальные поля скрываются без изменения WooCommerce Core.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Для организаций доступны название, ИНН, КПП и реквизиты; для частных покупателей остаётся короткая форма. Адресные подсказки и понятные ошибки уменьшают число незавершённых заказов.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}

@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Order Alerts",
+  "slug": "woocommerce-order-alerts",
+  "excerpt": "Оповещения о событиях заказов. Отправляет Telegram- и email-уведомления о новых заказах, задержке оплаты, смене статуса и ошибках платежа.",
+  "content": "<!-- wp:paragraph -->\n<p>Отправляет Telegram- и email-уведомления о новых заказах, задержке оплаты, смене статуса и ошибках платежа.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Выберите статусы и условия: новый заказ, неоплата дольше заданного срока, возврат или сбой оплаты.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Маршрутизируйте сообщения по чатам и адресам. Уведомление содержит номер заказа, покупателя, сумму, оплату и ссылку в админ-панель.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}

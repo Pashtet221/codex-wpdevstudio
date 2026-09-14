@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Payment Monitor",
+  "slug": "woocommerce-payment-monitor",
+  "excerpt": "Мониторинг зависших платежей. Контролирует заказы с незавершённой оплатой, отсутствие callback и расхождения между платёжным шлюзом и WooCommerce.",
+  "content": "<!-- wp:paragraph -->\n<p>Контролирует заказы с незавершённой оплатой, отсутствие callback и расхождения между платёжным шлюзом и WooCommerce.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Находите заказы, которые остаются в pending дольше допустимого интервала, и фиксируйте уведомления платёжного шлюза.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Ответственные получают предупреждение с контекстом, а журнал помогает восстановить цепочку событий без раскрытия платёжных данных.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}

@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Delivery Date",
+  "slug": "woocommerce-delivery-date",
+  "excerpt": "Дата и интервал доставки. Позволяет покупателю выбрать доступную дату и временной интервал с учётом региона и способа доставки.",
+  "content": "<!-- wp:paragraph -->\n<p>Позволяет покупателю выбрать доступную дату и временной интервал с учётом региона и способа доставки.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Настройте рабочие дни, праздники, минимальный срок подготовки и лимит заказов на интервал.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Отдельные расписания применяются для зон и методов доставки. Выбранное время сохраняется в заказе и доступно для экспорта и интеграций.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}

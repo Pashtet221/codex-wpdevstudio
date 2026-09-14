@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Smart Phone Masks",
+  "slug": "woocommerce-smart-phone-masks",
+  "excerpt": "Маски и проверка телефонов по стране. Определяет страну и применяет подходящую маску и валидацию телефонного номера в WooCommerce.",
+  "content": "<!-- wp:paragraph -->\n<p>Определяет страну и применяет подходящую маску и валидацию телефонного номера в WooCommerce.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Формат номера меняется при выборе страны и помогает ввести код и нужное количество цифр.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Перед сохранением номер приводится к международному формату для CRM и доставки. Пользователь получает понятную локализованную подсказку.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}

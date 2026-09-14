@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Product Add-ons Lite",
+  "slug": "woocommerce-product-addons-lite",
+  "excerpt": "Дополнительные опции товара. Добавляет к товарам чекбоксы, текстовые поля, загрузку файлов и платные дополнительные опции.",
+  "content": "<!-- wp:paragraph -->\n<p>Добавляет к товарам чекбоксы, текстовые поля, загрузку файлов и платные дополнительные опции.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Создавайте чекбоксы, переключатели, списки, текст, примечания и загрузку файла. Для выбора можно назначить доплату.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Группы опций назначаются товарам и категориям, поддерживают обязательность и простую условную логику. Выбор сохраняется в корзине и заказе.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}

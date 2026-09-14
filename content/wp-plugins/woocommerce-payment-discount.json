@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Payment Discount",
+  "slug": "woocommerce-payment-discount",
+  "excerpt": "Скидки и наценки по способу оплаты. Настраивает скидки и наценки в зависимости от способа оплаты, категории, товара или вариации.",
+  "content": "<!-- wp:paragraph -->\n<p>Настраивает скидки и наценки в зависимости от способа оплаты, категории, товара или вариации.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Создавайте фиксированные и процентные корректировки для выбранных платёжных шлюзов. Ограничивайте правило категориями, отдельными товарами и вариациями, задавайте приоритет и период действия.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Корректировка показывается отдельной строкой в корзине, checkout, письмах и заказе. Покупатель видит итог до подтверждения оплаты.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}

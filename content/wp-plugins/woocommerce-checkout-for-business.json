@@ -1,0 +1,8 @@
+{
+  "post_type": "plugin",
+  "status": "draft",
+  "title": "WooCommerce Checkout for Business",
+  "slug": "woocommerce-checkout-for-business",
+  "excerpt": "Checkout для физических и юридических лиц. Добавляет переключатель типа покупателя и реквизиты организации в оформление заказа WooCommerce.",
+  "content": "<!-- wp:paragraph -->\n<p>Добавляет переключатель типа покупателя и реквизиты организации в оформление заказа WooCommerce.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Возможности</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Частный покупатель заполняет обычную форму, организация — название, ИНН, КПП и юридические реквизиты.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Как работает</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Данные сохраняются в заказе и отображаются менеджеру. Обязательность и видимость полей можно связать со страной, оплатой и доставкой.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">Для кого подходит</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Решение подходит интернет-магазинам на WooCommerce, которым нужна управляемая логика без изменений WooCommerce Core и родительской темы.</p>\n<!-- /wp:paragraph -->"
+}
