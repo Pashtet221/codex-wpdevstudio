@@ -28,7 +28,10 @@ scripts/wp update-wp-plugin 123 examples/update-wp-plugin.json
 
 Дополнение `wordpress-plugin/codex-bridge-woocommerce-access` добавляет товары и
 вариации WooCommerce в whitelist Codex Bridge. WooCommerce должен быть активен:
-именно он регистрирует типы записей `product` и `product_variation`.
+именно он регистрирует типы записей `product` и `product_variation`. Для сайтов,
+где уже активно дополнение `codex-bridge-service-access`, его версия 1.1.0 также
+добавляет оба типа WooCommerce в whitelist без отдельной активации нового
+дополнения.
 
 ```bash
 # Просмотреть товары

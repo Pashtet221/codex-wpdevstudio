@@ -29,8 +29,9 @@ scripts/wp update-wp-plugin POST_ID examples/update-wp-plugin.json
 
 Дополнение `wordpress-plugin/codex-bridge-woocommerce-access` разрешает Codex
 Bridge работать с зарегистрированными WooCommerce типами `product` и
-`product_variation`. Установите и активируйте это дополнение на сайте рядом с
-Codex Bridge, после чего доступны команды:
+`product_variation`. Эти типы также добавляет обновлённое дополнение
+`codex-bridge-service-access`, поэтому на существующем сайте достаточно обновить
+уже активное дополнение доступа. После этого доступны команды:
 
 ```bash
 scripts/wp products
