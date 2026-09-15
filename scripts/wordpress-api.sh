@@ -18,6 +18,9 @@ case "${1:-help}" in
   posts)
     curl_api "$API/posts?post_type=post&per_page=100"
     ;;
+  products)
+    curl_api "$API/posts?post_type=product&per_page=100"
+    ;;
   services)
     curl_api "$API/posts?post_type=service&per_page=100"
     ;;
@@ -53,6 +56,9 @@ case "${1:-help}" in
   create-wp-plugin)
     curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/posts"
     ;;
+  create-product)
+    curl_api -X POST -H "Content-Type: application/json" --data-binary @"$2" "$API/posts"
+    ;;
   acf)
     curl_api "$API/posts/$2/acf"
     ;;
@@ -78,6 +84,9 @@ case "${1:-help}" in
     rm -f "$bridge_response"
     echo "codex-bridge wp-plugins update is unavailable; falling back to WordPress REST post type plugin" >&2
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "${WORDPRESS_URL%/}/wp-json/wp/v2/plugin/$2"
+    ;;
+  update-product)
+    curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2"
     ;;
   update-acf)
     curl_api -X PATCH -H "Content-Type: application/json" --data-binary @"$3" "$API/posts/$2/acf"
@@ -128,6 +137,6 @@ case "${1:-help}" in
     curl_api "$API/audit"
     ;;
   *)
-    echo "health pages posts services wp-plugins find get seo get-wp-plugin create create-service create-wp-plugin acf update update-service delete-service update-seo update-wp-plugin update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
+    echo "health pages posts products services wp-plugins find get seo get-wp-plugin create create-service create-wp-plugin create-product acf update update-service delete-service update-seo update-wp-plugin update-product update-acf media-upload media-sideload thumbnail screenshot-capture capture scan-links replace-links audit"
     ;;
 esac
