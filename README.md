@@ -25,6 +25,22 @@ scripts/wp update-wp-plugin POST_ID examples/update-wp-plugin.json
 
 Серверный WordPress-плагин Codex Bridge также должен иметь `wp-plugins` в whitelist разрешённых post type.
 
+## Товары WooCommerce
+
+Дополнение `wordpress-plugin/codex-bridge-woocommerce-access` разрешает Codex
+Bridge работать с зарегистрированными WooCommerce типами `product` и
+`product_variation`. Установите и активируйте это дополнение на сайте рядом с
+Codex Bridge, после чего доступны команды:
+
+```bash
+scripts/wp products
+scripts/wp create-product examples/create-product.json
+scripts/wp update-product POST_ID payload.json
+```
+
+Дополнение не изменяет WooCommerce Core и не обходит штатные проверки прав
+WordPress.
+
 ## Скриншоты сайта → WebP → WordPress Media → Gutenberg
 
 В v4.2 команда `capture` стала самонастраиваемой: при первом запуске Cloud автоматически устанавливает Playwright, Sharp и Chromium. Вручную выполнять `npm install` или `npx playwright install chromium` не нужно.
