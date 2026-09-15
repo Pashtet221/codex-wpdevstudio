@@ -15,8 +15,8 @@ foreach ( $GLOBALS['test_filters']['codex_bridge_allowed_post_types'] as $callba
 	$allowed = $callback( $allowed );
 }
 
-assert( array( 'page', 'post', 'service' ) === $allowed );
-assert( array( 'service' ) === codex_bridge_allow_service_post_type( array( 'service' ) ) );
-assert( array( 'service' ) === codex_bridge_allow_service_post_type( null ) );
+assert( array( 'page', 'post', 'service', 'product', 'product_variation' ) === $allowed );
+assert( array( 'service', 'product', 'product_variation' ) === codex_bridge_allow_service_post_type( array( 'service', 'product' ) ) );
+assert( array( 'service', 'product', 'product_variation' ) === codex_bridge_allow_service_post_type( null ) );
 
 echo json_encode( $allowed, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . PHP_EOL;
